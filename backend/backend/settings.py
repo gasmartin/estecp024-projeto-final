@@ -33,8 +33,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-OMDB_API_KEY = env('OMDB_API_KEY')
-
 
 # Application definition
 
@@ -46,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'core',
 ]
 
 REST_FRAMEWORK = {
