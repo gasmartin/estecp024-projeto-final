@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Your App{% endblock %}
+
+{% block content %}
+    <h1>Review</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="movie_id" value="{{ movie.id }}">
+
+        <button type="submit">
+            Add review
+        </button>
+    </form>
+{% endblock %}

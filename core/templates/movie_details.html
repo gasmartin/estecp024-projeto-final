@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Your App{% endblock %}
+
+{% block content %}
+    <button type="button" onclick="window.history.go(-1); return false;">
+        Go back
+    </button>
+    <h1>Movie Details</h1>
+    <img 
+        src="{{ movie.poster_link }}" 
+        alt="{{ movie.title }}'s Poster"
+        width="268"
+        height="392"
+    >
+    <p>Title: {{ movie.title }}</p>
+    <p>Director: {{ movie.director }}</p>
+    <p>Genres: {{ movie.genre }}</p>
+    <p>Starring: {{ movie.starring }}</p>
+    <p>Overview: {{ movie.overview }}</p>
+    <p>Runtime: {{ movie.runtime }}</p>
+    <p>Released year: {{ movie.released_year }}</p>
+{% endblock %}

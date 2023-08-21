@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Your App{% endblock %}
+
+{% block content %}
+    <h1>Search Results</h1>
+
+    {% include 'includes/search_form.html' %}
+
+    <ul>
+        {% for movie in movies %}
+            <li>
+                <a href="{% url 'movie' movie_id=movie.id %}">
+                    {{ movie.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

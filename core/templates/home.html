@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Your App{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Your App</h1>
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}! You are logged in.</p>
+    {% else %}
+        <p>Welcome to our app. Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to get started.</p>
+    {% endif %}
+    {% include 'includes/search_form.html' %}
+{% endblock %}
