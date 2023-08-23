@@ -20,4 +20,38 @@
     <p>Overview: {{ movie.overview }}</p>
     <p>Runtime: {{ movie.runtime }}</p>
     <p>Released year: {{ movie.released_year }}</p>
+
+    <div>
+        <h2>Reviews</h2>
+        {% if not user.is_authenticated %}
+        <p>You need to <a href="{% url 'login' %}">login</a> to add a review.</p>
+        {% else %}
+            {% if not user_review %}
+            <form method="get" action="/review/">
+                <input type="hidden" name="movieId" value="{{ movie.id }}">
+                <button type="submit">Add Review</button>
+            </form>
+            {% else %}
+            <div>
+                <p>Rating: {{ user_review.overall_rating }}</p>
+                <p>Comment: {{ user_review.review_text }}</p>
+                <p>Created at: {{ user_review.created_at }}</p>
+                <p>User: {{ user_review.user }}</p>
+                <a 
+                    href="{% url 'delete_review' user_review.id %}"
+                    onclick="return confirm('Are you sure you want to delete this review?');"
+                >
+                    Delete
+                </a>
+            </div>
+            {% endif %}
+        {% endif %}
+        {% for review in reviews %}
+        <div>
+            <p>Rating: {{ review.overall_rating }}</p>
+            <p>Comment: {{ review.review_text }}</p>
+            <p>Created at: {{ review.created_at }}</p>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -107,16 +107,61 @@ def movie(request, movie_id):
         }
 
         if request.user.is_authenticated:
-            context['user_review'] = Review.objects.filter(
-                movie=movie, 
-                user=request.user
-            ).first()
+            qs = Review.objects.filter(movie=movie, user=request.user)
+
+            if qs.exists():
+                context['user_review'] = qs.first()
+                context['reviews'] = context['reviews'].exclude(user=request.user)
 
         return render(request, 'movie_details.html', context)
     else:
         return redirect('home')
 
 
-@login_required
-def review(request, movie_id):
-    pass
+@login_required(login_url='login')
+def review(request):
+    if request.method == 'POST':
+        movie_id = request.POST['movieId']
+        rating = request.POST['rating']
+        comment = request.POST['comment']
+        
+        movie = Movie.objects.get(id=movie_id)
+
+        if Review.objects.filter(movie=movie, user=request.user).exists():
+            messages.error(request, 'You have already reviewed this movie')
+            return redirect('movie', movie_id=movie_id)
+
+        review = Review.objects.create(
+            movie=movie, 
+            user=request.user, 
+            overall_rating=rating, 
+            review_text=comment
+        )
+
+        review.save()
+
+        messages.success(request, 'Your review has been submitted successfully')
+        return redirect('movie', movie_id=movie_id)
+    elif request.method == 'GET':
+        movie_id = request.GET['movieId']
+
+        movie = Movie.objects.get(id=movie_id)
+
+        context = {
+            'movie': movie,
+        }
+
+        return render(request, 'review.html', context)
+    else:
+        return redirect('home')
+
+
+def delete_review(request, review_id):
+    review = Review.objects.get(id=review_id)
+    movie_id = review.movie.id
+
+    if review.user == request.user:
+        review.delete()
+        messages.success(request, 'Your review has been deleted successfully')
+
+    return redirect('movie', movie_id=movie_id)
