@@ -14,36 +14,38 @@
         </div>
     </div>
 
-    <div class="container mt-5">
+    <div class="container mt-5" >
         <div class="mb-3">
             <h3>Resultados:</h3>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Diretor</th>
-                    <th scope="col">lançamento</th>
-                    <th scope="col">Link</th>
-                </tr>
-            </thead>
-            {% for movie in movies %}
-            <tbody>
-                <tr>
-                    <th scope="row">{{movie.id}}</th>
-                    <td>{{ movie.title }}</td>
-                    <td>{{ movie.director }}</td>
-                    <td>{{ movie.released_year }}</td>
-                    <td>
-                        <a href="{% url 'movie' movie_id=movie.id %}">
-                            {{ movie.title }}
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-            {% endfor %}
-        </table>
+        <div style="max-height: 500px !important; overflow-y: auto;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Diretor</th>
+                        <th scope="col">lançamento</th>
+                        <th scope="col">Link</th>
+                    </tr>
+                </thead>
+                {% for movie in movies %}
+                <tbody>
+                    <tr>
+                        <th scope="row">{{movie.id}}</th>
+                        <td>{{ movie.title }}</td>
+                        <td>{{ movie.director }}</td>
+                        <td>{{ movie.released_year }}</td>
+                        <td>
+                            <a href="{% url 'movie' movie_id=movie.id %}">
+                                {{ movie.title }}
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 
 </div>
