@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Not-On-My-Watch{% endblock %}</title>
+    <meta name="description" content="Seu site avaliador de Filmes">
     <link rel="stylesheet" href="/static/assets/css/bootstrap.css">
 </head>
 
@@ -46,18 +47,23 @@
     </header>
 
     <main>
-        <div class="vh-100">
-            {% include 'includes/messages.html' %}
-            {% block content %}
-            {% endblock %}
+        <div class="vh-100 min-height: 100vh">
+            <div>
+                {% include 'includes/messages.html' %}
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="d-flex justify-content-center mt-4 bg-primary text-white pt-3 pb-3">
+                &copy; 2023 Not-On-My-Watch. Todos os direitos reservados.
+            </div>
         </div>
     </main>
 
-    <footer>
+    <!-- <footer class="fixed-bottom">
         <div class="d-flex justify-content-center mt-4 bg-primary text-white pt-3 pb-3">
             &copy; 2023 Not-On-My-Watch. Todos os direitos reservados.
         </div>
-    </footer>
+    </footer> -->
 
     <script src="/static/assets/js/bootstrap.bundle.js"></script>
 </body>
