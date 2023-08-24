@@ -1,19 +1,51 @@
 {% extends 'base.html' %}
 
-{% block title %}Home - Your App{% endblock %}
+{% block title %}Pesquisar - Not-On-My-Watch{% endblock %}
 
 {% block content %}
-    <h1>Search Results</h1>
+<div class="mt-5">
+    <div class="container">
+        <div>
+            <h1>Pesquisar</h1>
+        </div>
 
-    {% include 'includes/search_form.html' %}
+        <div class="mt-4">
+            {% include 'includes/search_form.html' %}
+        </div>
+    </div>
 
-    <ul>
-        {% for movie in movies %}
-            <li>
-                <a href="{% url 'movie' movie_id=movie.id %}">
-                    {{ movie.title }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container mt-5">
+        <div class="mb-3">
+            <h3>Resultados:</h3>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Diretor</th>
+                    <th scope="col">lançamento</th>
+                    <th scope="col">Link</th>
+                </tr>
+            </thead>
+            {% for movie in movies %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{movie.id}}</th>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.director }}</td>
+                    <td>{{ movie.released_year }}</td>
+                    <td>
+                        <a href="{% url 'movie' movie_id=movie.id %}">
+                            {{ movie.title }}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
 {% endblock %}

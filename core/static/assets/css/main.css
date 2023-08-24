@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.section {
+    padding: 80px 0;
+    background-color: #f5f5f5;
+}
+
+.section h2 {
+    margin-bottom: 20px;
+}
+
+.footer {
+    background-color: rgb(18, 85, 112);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}

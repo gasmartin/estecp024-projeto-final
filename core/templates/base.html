@@ -1,33 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Your App{% endblock %}</title>
+    <title>{% block title %}Not-On-My-Watch{% endblock %}</title>
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.css">
 </head>
+
 <body>
     <header>
+        <nav class="navbar navbar-expand-lg bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#">Not-On-My-Watch</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link active text-white" href="{% url 'logout' %}"
+                                    onclick="return confirm('Are you sure you want to sign out?')">Logout</a></li>
+                            {% else %}
+                            <li class="nav-item"><a class="nav-link active text-white"
+                                    href="{% url 'login' %}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link active text-white"
+                                    href="{% url 'register' %}">Register</a></li>
+                            {% endif %}
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </nav>
         <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}" onclick="return confirm('Are you sure you want to sign out?')">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-            </ul>
+
         </nav>
     </header>
 
     <main>
-        {% include 'includes/messages.html' %}
-        {% block content %}
-        {% endblock %}
+        <div class="vh-100">
+            {% include 'includes/messages.html' %}
+            {% block content %}
+            {% endblock %}
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2023 Your App. All rights reserved.</p>
+        <div class="d-flex justify-content-center mt-4 bg-primary text-white pt-3 pb-3">
+            &copy; 2023 Not-On-My-Watch. Todos os direitos reservados.
+        </div>
     </footer>
+
+    <script src="/static/assets/js/bootstrap.bundle.js"></script>
 </body>
+
 </html>

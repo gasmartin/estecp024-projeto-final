@@ -1,13 +1,108 @@
 {% extends 'base.html' %}
 
-{% block title %}Home - Your App{% endblock %}
+{% block title %}Home - Not-On-My-Watch{% endblock %}
 
 {% block content %}
-    <h1>Welcome to Your App</h1>
-    {% if user.is_authenticated %}
-        <p>Hello, {{ user.username }}! You are logged in.</p>
-    {% else %}
-        <p>Welcome to our app. Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to get started.</p>
-    {% endif %}
-    {% include 'includes/search_form.html' %}
+<div>
+    <div class="bg-body-secondary mt-4 pt-4">
+        <div class="container d-flex flex-column">
+            <div class="d-flex justify-content-center">
+                <h1>Bem vindo ao Not-On-My-Watch</h1>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <h4>Seu avaliador de filmes</h4>
+            </div>
+
+            <div class="d-flex justify-content-center mt-5">
+                É com grande entusiasmo que damos as boas-vindas a vocês, amantes do cinema, a um universo repleto de
+                críticas, classificações e descobertas cinematográficas emocionantes.
+            </div>
+
+            <div class="d-flex justify-content-center">
+                No Not-On-My-Watch, não apenas assistimos a filmes, mas também exploramos suas profundezas,
+                debatemos suas nuances e celebramos a magia da sétima arte juntos.
+            </div>
+
+            <div class="d-flex justify-content-center mt-5 mb-4">
+                {% if user.is_authenticated %}
+                <p>Hello, {{ user.username }}! You are logged in.</p>
+                {% else %}
+                <p>Para continuar faça <a href="{% url 'login' %}">Login</a> ou <a
+                        href="{% url 'register' %}">Cadastre-se.</a> É super rápido e fácil!</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-flex flex-column justify-content-center mt-5">
+        <div>
+            <h3>Faça uma busca rápida!</h3>
+        </div>
+
+        <div class="mt-2">
+            {% include 'includes/search_form.html' %}
+        </div>
+    </div>
+
+    <div class="bg-body-secondary mt-5">
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-sm-6 mb-3 mb-sm-0 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Explorar os Mais Assistidos</h5>
+                            <p class="card-text">Quer ficar por dentro das tendências atuais? Nossa seção de "Mais
+                                Assistidos" apresenta os filmes que estão conquistando os corações do público. Dos
+                                blockbusters de ação aos dramas envolventes, aqui você encontrará os filmes que estão
+                                dominando as telonas e as conversas.</p>
+                            <a href="#" class="btn btn-primary">saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Descobrir os Mais Bem Avaliados</h5>
+                            <p class="card-text">Em busca da crème de la crème do cinema? Nossa seleção de "Mais Bem
+                                Avaliados" reúne obras-primas aclamadas pela crítica e adoradas pelo público. Delicie-se
+                                com
+                                histórias que transcendem o tempo e gênero, mergulhando em narrativas que continuam a
+                                tocar
+                                nossas emoções e nos fazer refletir.</p>
+                            <a href="#" class="btn btn-primary">saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-6 mt-5 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Aprofundar-se nos Mais Avaliados</h5>
+                            <p class="card-text">Quer fazer parte da conversa e compartilhar sua opinião? Nossa seção de
+                                "Mais Avaliados" traz os filmes que receberam o maior número de avaliações dos usuários.
+                                Junte-se a uma comunidade vibrante de cinéfilos que discute, analisa e debate cada
+                                detalhe
+                                dessas obras cinematográficas cativantes.</p>
+                            <a href="#" class="btn btn-primary">saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mt-5 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Muito mais...</h5>
+                            <p class="card-text">Seja você um aficionado por clássicos atemporais, um devorador de
+                                blockbusters modernos ou um entusiasta de cinema independente, o CineAvaliações é o seu
+                                novo
+                                lar virtual. Navegue com facilidade, explore com curiosidade e compartilhe sua paixão
+                                pelo
+                                cinema com outros como você.</p>
+                            <a href="#" class="btn btn-primary">saiba mais</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

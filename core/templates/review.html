@@ -1,22 +1,37 @@
 {% extends 'base.html' %}
 
-{% block title %}Home - Your App{% endblock %}
+{% block title %}Review - Your App{% endblock %}
 
 {% block content %}
-    <h1>Review</h1>
 
-    <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="movieId" value="{{ movie.id }}">
+<div class="container mt-5">
+    <div class="d-flex justify-content-center mb-5">
+        <h1>Review</h1>
+    </div>
 
-        <label for="rating">Rating</label>
-        <input type="number" name="rating" id="rating" min="1" max="10" required>
+    <div>
+        <form class="d-flex flex-column justify-content-center" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="movieId" value="{{ movie.id }}">
 
-        <label for="comment">Comment</label>
-        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+            <div>
+                <label for="rating">Rating:</label>
+                <input type="number" name="rating" id="rating" min="1" max="10" required style="width: 150px;;">
+                <label for="nota">(Nota de 1 a 10)</label>
+            </div>
 
-        <button type="submit">
-            Add review
-        </button>
-    </form>
+            <div class="d-flex flex-column mt-5">
+                <label for="comment">Comment</label>
+                <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="mt-5">
+                <button class="btn btn-primary" type="submit">
+                    Adicionar revisão
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
 {% endblock %}
